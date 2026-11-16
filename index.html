@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Студент ИМКТ ДВФУ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">&lt;IMCT_LEADER /&gt;</div>
+            <div class="nav-links">
+                <a href="#about">О себе</a>
+                <a href="#skills">Стек & Навыки</a>
+                <a href="#activities">Организации</a>
+                <a href="#terminal">Терминал</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главный экран -->
+    <header id="about">
+        <div class="hero-container">
+            <div class="hero-text">
+                <span class="badge">ИМКТ ДВФУ & Организации</span>
+                <h1>Привет, я студент <span class="highlight">ИМКТ ДВФУ</span></h1>
+                <p>Сочетаю аналитический склад ума и программирование с управлением командами. Помимо разработки, реализую крупные медиа-проекты и развиваюсь в творческой сфере на международном уровне.</p>
+                <div class="cta-buttons">
+                    <a href="#activities" class="btn primary">Посмотреть деятельность</a>
+                    <a href="https://t.me" target="_blank" class="btn secondary">Написать в Telegram</a>
+                </div>
+            </div>
+            <div class="hero-avatar">
+                <div class="avatar-box">
+                    <pre><code><span>const</span> student = {
+  university: 'FEFU_IMCT',
+  management: 'Head_Of_Department',
+  choir: 'International_Academic',
+  status: 'Active_Life_Position'
+};</code></pre>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навыки и Стек -->
+    <section id="skills" class="section-bg">
+        <div class="container">
+            <h2>Профессиональные навыки</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Разработка</h3>
+                    <p>JavaScript (ES6+), HTML5, CSS3, Git / GitHub, базовые алгоритмы, работа с API и веб-интерфейсами.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Management & Soft Skills</h3>
+                    <p>Управление командой, организация рабочих процессов, проектный менеджмент, публичные выступления.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Творчество</h3>
+                    <p>Академический вокал, чтение партитур, работа в ансамбле, стрессоустойчивость и высокая концентрация.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Внеучебная деятельность -->
+    <section id="activities">
+        <div class="container">
+            <h2>Проекты и организации</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-info">
+                        <h4>Глава отдела в СО «Сейчас Объясню»</h4>
+                        <p>Руковожу направлением в одной из ключевых студенческих организаций ДВФУ. Отвечаю за координацию команды, генерацию контента, распределение задач и контроль качества медиа-продуктов.</p>
+                        <span class="tech-tag">Лидерство</span>
+                        <span class="tech-tag">Менеджмент</span>
+                        <span class="tech-tag">Медиа</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h4>Академический хор ДВФУ</h4>
+                        <p>Являюсь артистом Заслуженного коллектива Приморского края — Академического хора ДВФУ. Участвую в исполнении сложнейших классических и современных произведений, выступаю на международных конкурсах и фестивалях.</p>
+                        <span class="tech-tag">Хор</span>
+                        <span class="tech-tag">Музыка</span>
+                        <span class="tech-tag">International</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Интерактивный терминал -->
+    <section id="terminal" class="section-bg">
+        <div class="container">
+            <h2>Интерактивная консоль визитки</h2>
+            <p class="subtitle">Введи команду <code class="inline-code">help</code>, чтобы узнать доступные опции.</p>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="title">guest@imct-student:~</span>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="output">Добро пожаловать в консоль студента ИМКТ!</div>
+                    <div class="output">Для просмотра доступных команд введите 'help'.</div>
+                    <div class="input-line">
+                        <span class="prompt">guest@imct-student:~$</span>
+                        <input type="text" id="terminal-input" autofocus autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Разработано студентом ИМКТ ДВФУ. Все права защищены.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
