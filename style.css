@@ -2,11 +2,13 @@
     --bg: #0c110f;
     --surface: #131b18;
     --surface-hover: #18231f;
+    --input-bg: #0a0e0c;
     --border: #22302a;
     --text: #e6ece9;
     --text-muted: #8fa199;
     --accent: #34d399;
-    --accent-dim: rgba(52, 211, 153, 0.12);
+    --accent-glow: rgba(52, 211, 153, 0.25);
+    --error: #f87171;
 }
 
 * {
@@ -21,40 +23,31 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    padding-bottom: 72px;
 }
 
 .wrapper {
-    max-width: 920px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-/* Верхняя навигация */
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 0;
-    border-bottom: 1px solid var(--border);
+/* Анимации */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.site-name {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-weight: 600;
-    color: var(--accent);
-    font-size: 1rem;
-}
-
-nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    margin-left: 24px;
-    font-size: 0.92rem;
-    transition: color 0.15s ease;
-}
-
-nav a:hover {
-    color: var(--text);
+@keyframes pulseDot {
+    0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); }
+    70% { box-shadow: 0 0 0 7px rgba(52, 211, 153, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
 }
 
 /* Первый экран */
@@ -64,6 +57,10 @@ nav a:hover {
     gap: 40px;
     padding: 64px 0;
     align-items: start;
+}
+
+.hero-main {
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 h1 {
@@ -87,32 +84,21 @@ h1 {
     flex-wrap: wrap;
 }
 
-.btn-primary, .btn-secondary {
-    padding: 10px 18px;
+.btn-primary {
+    padding: 10px 20px;
     border-radius: 6px;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
-    transition: all 0.15s ease;
-}
-
-.btn-primary {
     background-color: var(--accent);
     color: #062117;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-primary:hover {
     background-color: #6ee7b7;
-}
-
-.btn-secondary {
-    background-color: var(--surface);
-    color: var(--text);
-    border: 1px solid var(--border);
-}
-
-.btn-secondary:hover {
-    border-color: var(--text-muted);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow);
 }
 
 /* Боковая карточка "Сейчас" */
@@ -121,6 +107,13 @@ h1 {
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+    transition: border-color 0.2s ease;
+}
+
+.now-card:hover {
+    border-color: #2f423a;
 }
 
 .now-header {
@@ -142,6 +135,7 @@ h1 {
     height: 8px;
     background-color: var(--accent);
     border-radius: 50%;
+    animation: pulseDot 2.2s infinite;
 }
 
 .now-card ul {
@@ -167,30 +161,19 @@ h1 {
 section {
     padding: 48px 0;
     border-top: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+#activities { animation-delay: 0.22s; }
+#stack { animation-delay: 0.32s; }
+#lab-4d { animation-delay: 0.42s; }
 
 h2 {
     font-size: 1.4rem;
     font-weight: 600;
     letter-spacing: -0.01em;
     margin-bottom: 24px;
-}
-
-.section-desc {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-top: -14px;
-    margin-bottom: 20px;
-}
-
-code {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    color: var(--accent);
-    font-size: 0.88rem;
 }
 
 /* Карточки деятельности */
@@ -205,12 +188,13 @@ code {
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 22px;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .card:hover {
+    transform: translateY(-4px);
     background-color: var(--surface-hover);
-    border-color: #2f423a;
+    border-color: var(--accent);
 }
 
 .card-meta {
@@ -245,77 +229,253 @@ code {
     border-radius: 6px;
     font-size: 0.9rem;
     color: var(--text);
+    cursor: default;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-/* Терминал */
-.terminal {
-    background-color: #080c0a;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.9rem;
-}
-
-.terminal-bar {
-    background-color: var(--surface);
-    padding: 8px 14px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
-
-.terminal-output {
-    padding: 16px;
-    height: 210px;
-    overflow-y: auto;
-}
-
-.line {
-    margin-bottom: 6px;
-    color: var(--text);
-}
-
-.line.muted {
-    color: var(--text-muted);
-}
-
-.line.accent {
+.tags-list span:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
     color: var(--accent);
 }
 
-.input-row {
+/* --- Секция 4D-графикатора --- */
+.section-head {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.section-head h2 {
+    margin-bottom: 0;
+}
+
+.badge-subtle {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.plotter-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.plotter-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tool-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.preset-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
 }
 
-.prompt {
+.preset-btn {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.preset-btn:hover {
+    border-color: var(--text-muted);
+    color: var(--text);
+}
+
+.preset-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background-color: rgba(52, 211, 153, 0.08);
+}
+
+.formula-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.formula-group label {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.formula-group code {
+    color: var(--accent);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.formula-group input[type="text"] {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 9px 12px;
+    color: var(--text);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.formula-group input[type="text"]:focus {
+    border-color: var(--accent);
+}
+
+.error-text {
+    color: var(--error);
+    font-size: 0.82rem;
+    min-height: 18px;
+}
+
+.sliders-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 4px;
+    border-top: 1px solid var(--border);
+}
+
+.slider-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.slider-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.plotter-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.tool-btn {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.tool-btn:hover {
+    border-color: var(--accent);
+}
+
+.tool-btn.active {
+    background-color: rgba(52, 211, 153, 0.12);
+    border-color: var(--accent);
     color: var(--accent);
 }
 
-#terminal-input {
-    background: transparent;
-    border: none;
-    color: var(--text);
-    font-family: inherit;
-    font-size: inherit;
-    width: 100%;
-    outline: none;
-}
-
-/* Подвал */
-footer {
-    border-top: 1px solid var(--border);
-    padding: 28px 0;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+.syntax-hint {
+    font-size: 0.78rem;
     color: var(--text-muted);
-    font-size: 0.85rem;
+    line-height: 1.4;
 }
 
-@media (max-width: 768px) {
+.syntax-hint code {
+    color: var(--text);
+    background-color: var(--input-bg);
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+/* Правая область с графиком */
+.plotter-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: grab;
+    touch-action: none;
+}
+
+canvas:active {
+    cursor: grabbing;
+}
+
+.w-legend {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.w-gradient {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #38bdf8 0%, #34d399 50%, #fb7185 100%);
+    border: 1px solid var(--border);
+}
+
+.drag-tip {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (max-width: 820px) {
     .hero {
         grid-template-columns: 1fr;
         padding: 40px 0;
@@ -323,11 +483,7 @@ footer {
     .cards-grid {
         grid-template-columns: 1fr;
     }
-    nav {
-        display: none;
-    }
-    footer {
-        flex-direction: column;
-        gap: 8px;
+    .plotter-card {
+        grid-template-columns: 1fr;
     }
 }

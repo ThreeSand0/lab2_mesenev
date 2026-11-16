@@ -3,43 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личная страница — Студент ИМКТ</title>
+    <title>Студент ИМКТ ДВФУ</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="wrapper">
         <header>
-            <div class="top-bar">
-                <span class="site-name">~/imct-dev</span>
-                <nav>
-                    <a href="#activities">Чем занимаюсь</a>
-                    <a href="#stack">Инструменты</a>
-                    <a href="#console">Консоль</a>
-                </nav>
-            </div>
-
             <div class="hero">
                 <div class="hero-main">
-                    <h1>Привет. Учусь в ИМКТ ДВФУ, пишу код и делаю медиа.</h1>
+                    <h1>Учусь в ИМКТ ДВФУ, делаю медиа и пою в хоре.</h1>
                     <p class="lead">
                         Вне пар руковожу отделом в студенческом медиа «Сейчас Объясню» 
-                        и пою в Академическом хоре ДВФУ. Люблю понятные интерфейсы, 
-                        живую музыку и когда проекты работают без костылей.
+                        и пою в Академическом хоре ДВФУ. Люблю живую музыку, интересные 
+                        проекты и работу в сильной команде.
                     </p>
                     <div class="links">
-                        <a href="https://t.me" target="_blank" class="btn-primary">Написать в Telegram</a>
-                        <a href="https://github.com" target="_blank" class="btn-secondary">GitHub</a>
+                        <a href="https://t.me/ReznikovTA" target="_blank" class="btn-primary">Написать в Telegram</a>
                     </div>
                 </div>
 
                 <aside class="now-card">
-                    <div class="now-header">
-                        <span class="status-dot"></span>
-                        <span>В фокусе сейчас</span>
-                    </div>
                     <ul>
-                        <li><strong>Учёба:</strong> ИМКТ, алгоритмы и веб</li>
+                        <li><strong>Учёба:</strong> студент ИМКТ ДВФУ</li>
                         <li><strong>Медиа:</strong> «Сейчас Объясню», глава отдела</li>
                         <li><strong>Музыка:</strong> Международный академический хор</li>
                         <li><strong>Локация:</strong> Владивосток, о. Русский</li>
@@ -73,55 +59,106 @@
                     </article>
 
                     <article class="card">
-                        <div class="card-meta">Учёба и практика</div>
-                        <h3>Разработка и веб</h3>
+                        <div class="card-meta">Университет</div>
+                        <h3>Учёба в ИМКТ</h3>
                         <p>
-                            Изучаю программирование в ИМКТ. Делаю учебные и личные проекты: 
-                            от небольших утилит и визуализаций до статических сайтов 
-                            на чистом стеке без лишних зависимостей.
+                            Получаю высшее образование в Институте математики и компьютерных технологий ДВФУ. 
+                            Осваиваю фундаментальные дисциплины, математику и современные технологии.
                         </p>
                     </article>
                 </div>
             </section>
 
             <section id="stack">
-                <h2>Инструменты и навыки</h2>
+                <h2>Навыки и интересы</h2>
                 <div class="tags-list">
-                    <span>HTML / CSS</span>
-                    <span>JavaScript</span>
-                    <span>Python</span>
-                    <span>Git</span>
-                    <span>Linux</span>
-                    <span>Nginx</span>
                     <span>Управление командой</span>
+                    <span>Организация процессов</span>
                     <span>Редактура и контент</span>
                     <span>Академический вокал</span>
+                    <span>Работа в ансамбле</span>
+                    <span>Математика и логика</span>
+                    <span>Публичные выступления</span>
                 </div>
             </section>
 
-            <section id="console">
-                <h2>Быстрая консоль</h2>
-                <p class="section-desc">Если лень читать блоки выше — можно спросить через командную строку. Введите <code>help</code>.</p>
-                
-                <div class="terminal">
-                    <div class="terminal-bar">
-                        <span>bash — 80x24</span>
-                    </div>
-                    <div class="terminal-output" id="terminal-body">
-                        <div class="line muted">Сессия открыта. Введите 'help' для списка команд.</div>
-                        <div class="input-row">
-                            <span class="prompt">$</span>
-                            <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+            <!-- Эргономичный блок 4D-графика -->
+                        <section id="lab-4d">
+                <div class="section-head">
+                    <h2>4D-графикатор</h2>
+                    <span class="badge-subtle">z = f(x, y, w) · сечение по W</span>
+                </div>
+
+                <div class="plotter-card">
+                    <!-- Левая колонка: удобные инструменты -->
+                    <div class="plotter-tools">
+                        <div class="presets-group">
+                            <span class="tool-label">Готовые пресеты:</span>
+                            <div class="preset-buttons">
+                                <button type="button" class="preset-btn active" data-z="sin(x + w) * cos(y - w)">Бегущие волны</button>
+                                <button type="button" class="preset-btn" data-z="cos(sqrt(x^2 + y^2) - w * 2) * 2">Пульсация</button>
+                                <button type="button" class="preset-btn" data-z="sqrt(max(0, 16 - x^2 - y^2 - w^2 * 2))">4D-шар</button>
+                                <button type="button" class="preset-btn" data-z="sin(x * w * 0.5) + cos(y * w * 0.5)">Интерференция</button>
+                            </div>
                         </div>
+
+                        <div class="formula-group">
+                            <label for="input-z">Функция <code>z = f(x, y, w)</code></label>
+                            <input type="text" id="input-z" value="sin(x + w) * cos(y - w)" spellcheck="false" autocomplete="off">
+                        </div>
+
+                        <div id="error-box" class="error-text"></div>
+
+                        <div class="sliders-group">
+                            <!-- Главный ползунок 4-й координаты W -->
+                            <div class="slider-item">
+                                <div class="slider-top">
+                                    <span><strong>4-я координата (w)</strong></span>
+                                    <span id="w-val" style="color: var(--accent); font-family: monospace;">0.00</span>
+                                </div>
+                                <input type="range" id="w-slider" min="-3.14" max="3.14" step="0.02" value="0">
+                            </div>
+
+                            <div class="slider-item">
+                                <div class="slider-top">
+                                    <span>Масштаб</span>
+                                    <span id="zoom-val">32</span>
+                                </div>
+                                <input type="range" id="zoom-slider" min="18" max="55" value="32">
+                            </div>
+
+                            <div class="slider-item">
+                                <div class="slider-top">
+                                    <span>Детализация сетки</span>
+                                    <span id="grid-val">40</span>
+                                </div>
+                                <input type="range" id="grid-slider" min="20" max="60" value="40">
+                            </div>
+                        </div>
+
+                        <div class="plotter-actions">
+                            <button type="button" id="autow-btn" class="tool-btn">Анимация W: Выкл</button>
+                            <button type="button" id="reset-cam-btn" class="tool-btn">Сбросить ракурс</button>
+                        </div>
+
+                        <div class="syntax-hint">
+                            Доступны: <code>x, y, w</code>, <code>+ - * / ^</code>, <code>sin, cos, tan, sqrt, abs, exp, PI</code>
+                        </div>
+                    </div>
+
+                    <!-- Правая колонка: холст -->
+                    <div class="plotter-view">
+                        <canvas id="plotterCanvas" width="540" height="440"></canvas>
+                        <div class="w-legend">
+                            <span>min Z</span>
+                            <div class="w-gradient"></div>
+                            <span>max Z</span>
+                        </div>
+                        <div class="drag-tip">Двигайте ползунок W для изменения 4-й координаты · Тяните график мышью для вращения</div>
                     </div>
                 </div>
             </section>
         </main>
-
-        <footer>
-            <span>Владивосток, 2026</span>
-            <span>Сделано руками без фреймворков</span>
-        </footer>
     </div>
 
     <script src="script.js"></script>
